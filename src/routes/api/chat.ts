@@ -86,6 +86,7 @@ export const Route = createFileRoute("/api/chat")({
 
         const gateway = createLovableAiGatewayProvider(lovableKey);
 
+        const modelMessages = await convertToModelMessages(messages);
         const result = streamText({
           model: gateway("google/gemini-3-flash-preview"),
           system:
@@ -94,7 +95,7 @@ export const Route = createFileRoute("/api/chat")({
             "Use markdown: short headings, bullet points, bold key terms, and KaTeX-style math when relevant. " +
             "Stay encouraging and clear. " +
             difficultyPrompt[difficulty],
-          messages: convertToModelMessages(messages),
+          messages: modelMessages,
           onFinish: async ({ text }) => {
             await supabase.from("chat_messages").insert({
               thread_id: threadId,

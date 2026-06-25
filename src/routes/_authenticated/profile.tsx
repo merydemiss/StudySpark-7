@@ -28,7 +28,7 @@ function ProfilePage() {
     "Student";
   const initials = name
     .split(" ")
-    .map((p) => p[0])
+    .map((p: string) => p[0])
     .filter(Boolean)
     .slice(0, 2)
     .join("")
