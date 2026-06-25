@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiTtsRouteImport } from './routes/api/tts'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedTutorRouteImport } from './routes/_authenticated/tutor'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
@@ -32,6 +33,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTtsRoute = ApiTtsRouteImport.update({
+  id: '/api/tts',
+  path: '/api/tts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/tutor': typeof AuthenticatedTutorRouteWithChildren
   '/api/chat': typeof ApiChatRoute
+  '/api/tts': typeof ApiTtsRoute
   '/notes/$noteId': typeof AuthenticatedNotesNoteIdRoute
   '/tutor/$threadId': typeof AuthenticatedTutorThreadIdRoute
 }
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/tutor': typeof AuthenticatedTutorRouteWithChildren
   '/api/chat': typeof ApiChatRoute
+  '/api/tts': typeof ApiTtsRoute
   '/notes/$noteId': typeof AuthenticatedNotesNoteIdRoute
   '/tutor/$threadId': typeof AuthenticatedTutorThreadIdRoute
 }
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/tutor': typeof AuthenticatedTutorRouteWithChildren
   '/api/chat': typeof ApiChatRoute
+  '/api/tts': typeof ApiTtsRoute
   '/_authenticated/notes/$noteId': typeof AuthenticatedNotesNoteIdRoute
   '/_authenticated/tutor/$threadId': typeof AuthenticatedTutorThreadIdRoute
 }
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/tutor'
     | '/api/chat'
+    | '/api/tts'
     | '/notes/$noteId'
     | '/tutor/$threadId'
   fileRoutesByTo: FileRoutesByTo
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/tutor'
     | '/api/chat'
+    | '/api/tts'
     | '/notes/$noteId'
     | '/tutor/$threadId'
   id:
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/tutor'
     | '/api/chat'
+    | '/api/tts'
     | '/_authenticated/notes/$noteId'
     | '/_authenticated/tutor/$threadId'
   fileRoutesById: FileRoutesById
@@ -149,6 +161,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiTtsRoute: typeof ApiTtsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/tts': {
+      id: '/api/tts'
+      path: '/api/tts'
+      fullPath: '/api/tts'
+      preLoaderRoute: typeof ApiTtsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -270,6 +290,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiTtsRoute: ApiTtsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
