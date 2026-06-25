@@ -4,7 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { listThreads } from "@/lib/threads.functions";
 import { listNotes } from "@/lib/notes.functions";
 import { listAssignments, getStudyStats } from "@/lib/planner.functions";
-import { AppShell } from "@/components/app-shell";
+
 import {
   MessageSquare,
   BookOpen,
