@@ -145,6 +145,47 @@ function Dashboard() {
             />
           )}
         </Card>
+
+        <Card title="Upcoming assignments" cta={{ to: "/planner", label: "Plan", icon: Plus }}>
+          {assignQ.data && assignQ.data.filter((a) => a.status === "pending").length > 0 ? (
+            <ul className="space-y-1">
+              {assignQ.data
+                .filter((a) => a.status === "pending")
+                .slice(0, 5)
+                .map((a) => {
+                  const overdue = a.due_at && new Date(a.due_at) < new Date();
+                  return (
+                    <li key={a.id}>
+                      <Link
+                        to="/planner"
+                        className="hover:bg-accent flex items-center justify-between rounded-xl px-3 py-2.5 text-sm"
+                      >
+                        <span className="truncate font-medium">{a.title}</span>
+                        <span
+                          className={`ml-2 shrink-0 text-xs ${overdue ? "font-semibold text-destructive" : "text-muted-foreground"}`}
+                        >
+                          {a.due_at
+                            ? new Date(a.due_at).toLocaleDateString(undefined, {
+                                month: "short",
+                                day: "numeric",
+                              })
+                            : "—"}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+          ) : (
+            <EmptyState
+              icon={Calendar}
+              title="No assignments"
+              body="Add tasks and deadlines to stay on track."
+              to="/planner"
+              cta="Open planner"
+            />
+          )}
+        </Card>
       </section>
     </div>
   );
