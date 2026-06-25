@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      assignments: {
+        Row: {
+          created_at: string
+          due_at: string | null
+          id: string
+          notes: string | null
+          priority: string
+          status: string
+          subject: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          notes?: string | null
+          priority?: string
+          status?: string
+          subject?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          notes?: string | null
+          priority?: string
+          status?: string
+          subject?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       chat_messages: {
         Row: {
           created_at: string
@@ -118,7 +157,6 @@ export type Database = {
           created_at: string
           display_name: string | null
           id: string
-          premium_until: string | null
           updated_at: string
         }
         Insert: {
@@ -126,7 +164,6 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id: string
-          premium_until?: string | null
           updated_at?: string
         }
         Update: {
@@ -134,34 +171,66 @@ export type Database = {
           created_at?: string
           display_name?: string | null
           id?: string
-          premium_until?: string | null
           updated_at?: string
         }
         Relationships: []
       }
-      usage_counters: {
+      study_goals: {
         Row: {
           created_at: string
-          day: string
-          messages_count: number
-          tts_seconds: number
+          id: string
+          period: string
+          target_minutes: number
+          title: string
           updated_at: string
           user_id: string
         }
         Insert: {
           created_at?: string
-          day?: string
-          messages_count?: number
-          tts_seconds?: number
+          id?: string
+          period?: string
+          target_minutes?: number
+          title: string
           updated_at?: string
           user_id: string
         }
         Update: {
           created_at?: string
-          day?: string
-          messages_count?: number
-          tts_seconds?: number
+          id?: string
+          period?: string
+          target_minutes?: number
+          title?: string
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_sessions: {
+        Row: {
+          created_at: string
+          duration_seconds: number
+          ended_at: string | null
+          id: string
+          started_at: string
+          subject: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds?: number
+          ended_at?: string | null
+          id?: string
+          started_at?: string
+          subject?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          duration_seconds?: number
+          ended_at?: string | null
+          id?: string
+          started_at?: string
+          subject?: string | null
           user_id?: string
         }
         Relationships: []
