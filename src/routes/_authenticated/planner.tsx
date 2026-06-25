@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
-import { AppShell } from "@/components/app-shell";
+
 import {
   listAssignments,
   createAssignment,
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/_authenticated/planner")({
 
 function PlannerPage() {
   return (
-    <AppShell>
+    
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-12">
         <header className="mb-6">
           <h1 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
@@ -57,7 +57,7 @@ function PlannerPage() {
           <FocusTimer />
         </div>
       </div>
-    </AppShell>
+    
   );
 }
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
-import { AppShell } from "@/components/app-shell";
+
 import { speak } from "@/lib/tts-client";
 import { Mic, Square, Play, Loader2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
@@ -63,7 +63,7 @@ function VoicePage() {
   };
 
   return (
-    <AppShell>
+    
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 md:px-8 md:py-12">
         <header className="mb-6 flex items-start justify-between gap-4">
           <div>
@@ -158,6 +158,6 @@ function VoicePage() {
           </div>
         </div>
       </div>
-    </AppShell>
+    
   );
 }
