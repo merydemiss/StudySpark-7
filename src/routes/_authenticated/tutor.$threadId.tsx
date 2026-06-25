@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Sparkles, BookOpen } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getThreadMessages, updateThreadDifficulty } from "@/lib/threads.functions";
@@ -54,7 +54,11 @@ function ChatPage() {
         <ChatInner
           key={threadId}
           threadId={threadId}
-          initialMessages={initialQ.data.messages}
+          initialMessages={initialQ.data.rows.map((r) => ({
+            id: r.id,
+            role: r.role as UIMessage["role"],
+            parts: r.parts as UIMessage["parts"],
+          }))}
           initialDifficulty={initialQ.data.thread.difficulty as "simple" | "standard" | "advanced"}
           onDifficultyChange={async (d) => {
             await setDiff({ data: { id: threadId, difficulty: d } });
@@ -83,13 +87,23 @@ function ChatInner({
   const [difficulty, setDifficulty] = useState(initialDifficulty);
   const [input, setInput] = useState("");
 
+  const tokenRef = useRef<string | null>(null);
+  useEffect(() => {
+    void supabase.auth.getSession().then(({ data }) => {
+      tokenRef.current = data.session?.access_token ?? null;
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+      tokenRef.current = session?.access_token ?? null;
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
         api: "/api/chat",
-        headers: async () => {
-          const { data } = await supabase.auth.getSession();
-          const token = data.session?.access_token;
+        headers: (): Record<string, string> => {
+          const token = tokenRef.current;
           return token ? { Authorization: `Bearer ${token}` } : {};
         },
         body: () => ({ threadId, difficulty }),
@@ -189,8 +203,7 @@ function ChatInner({
       <div className="border-t border-border bg-background/80 p-3 backdrop-blur md:p-4">
         <div className="mx-auto w-full max-w-3xl">
           <PromptInput
-            onSubmit={(e) => {
-              e.preventDefault();
+            onSubmit={() => {
               void submit(input);
             }}
           >
