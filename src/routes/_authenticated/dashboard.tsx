@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { listThreads } from "@/lib/threads.functions";
 import { listNotes } from "@/lib/notes.functions";
+import { listAssignments, getStudyStats } from "@/lib/planner.functions";
+
 import {
   MessageSquare,
   BookOpen,
@@ -11,6 +13,8 @@ import {
   ArrowRight,
   Plus,
   Sparkles,
+  Calendar,
+  Timer,
 } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -24,8 +28,12 @@ function Dashboard() {
   const { user } = Route.useRouteContext();
   const threadsFn = useServerFn(listThreads);
   const notesFn = useServerFn(listNotes);
+  const assignFn = useServerFn(listAssignments);
+  const statsFn = useServerFn(getStudyStats);
   const threadsQ = useQuery({ queryKey: ["threads"], queryFn: () => threadsFn() });
   const notesQ = useQuery({ queryKey: ["notes"], queryFn: () => notesFn() });
+  const assignQ = useQuery({ queryKey: ["assignments"], queryFn: () => assignFn() });
+  const statsQ = useQuery({ queryKey: ["study-stats"], queryFn: () => statsFn() });
 
   const name =
     (user.user_metadata?.full_name as string | undefined) ||
@@ -33,11 +41,16 @@ function Dashboard() {
     user.email?.split("@")[0] ||
     "there";
 
+  const xp =
+    ((threadsQ.data?.length ?? 0) + (notesQ.data?.length ?? 0)) * 25 +
+    (statsQ.data?.totalSessions ?? 0) * 15 +
+    (assignQ.data?.filter((a) => a.status === "done").length ?? 0) * 20;
+
   const stats = [
-    { label: "Day streak", value: "1", icon: Flame, hue: "from-orange-400 to-pink-500" },
-    { label: "Chats", value: String(threadsQ.data?.length ?? 0), icon: MessageSquare, hue: "from-brand-blue to-brand-purple" },
+    { label: "Day streak", value: `${statsQ.data?.streak ?? 0}`, icon: Flame, hue: "from-orange-400 to-pink-500" },
+    { label: "Today focus", value: `${statsQ.data?.todayMinutes ?? 0}m`, icon: Timer, hue: "from-brand-blue to-brand-purple" },
     { label: "Note sets", value: String(notesQ.data?.length ?? 0), icon: BookOpen, hue: "from-brand-purple to-brand-pink" },
-    { label: "XP", value: String(((threadsQ.data?.length ?? 0) + (notesQ.data?.length ?? 0)) * 25), icon: Trophy, hue: "from-yellow-400 to-orange-500" },
+    { label: "XP", value: String(xp), icon: Trophy, hue: "from-yellow-400 to-orange-500" },
   ];
 
   return (
@@ -129,6 +142,47 @@ function Dashboard() {
               body="Paste your study material to get a summary and flashcards."
               to="/notes"
               cta="Add notes"
+            />
+          )}
+        </Card>
+
+        <Card title="Upcoming assignments" cta={{ to: "/planner", label: "Plan", icon: Plus }}>
+          {assignQ.data && assignQ.data.filter((a) => a.status === "pending").length > 0 ? (
+            <ul className="space-y-1">
+              {assignQ.data
+                .filter((a) => a.status === "pending")
+                .slice(0, 5)
+                .map((a) => {
+                  const overdue = a.due_at && new Date(a.due_at) < new Date();
+                  return (
+                    <li key={a.id}>
+                      <Link
+                        to="/planner"
+                        className="hover:bg-accent flex items-center justify-between rounded-xl px-3 py-2.5 text-sm"
+                      >
+                        <span className="truncate font-medium">{a.title}</span>
+                        <span
+                          className={`ml-2 shrink-0 text-xs ${overdue ? "font-semibold text-destructive" : "text-muted-foreground"}`}
+                        >
+                          {a.due_at
+                            ? new Date(a.due_at).toLocaleDateString(undefined, {
+                                month: "short",
+                                day: "numeric",
+                              })
+                            : "—"}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+          ) : (
+            <EmptyState
+              icon={Calendar}
+              title="No assignments"
+              body="Add tasks and deadlines to stay on track."
+              to="/planner"
+              cta="Open planner"
             />
           )}
         </Card>

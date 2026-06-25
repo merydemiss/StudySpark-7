@@ -9,6 +9,8 @@ import {
   Sparkles,
   Menu,
   X,
+  Mic,
+  CalendarCheck,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,6 +20,8 @@ const links = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/tutor", label: "AI Tutor", icon: MessageSquare },
   { to: "/notes", label: "Smart Notes", icon: BookOpen },
+  { to: "/voice", label: "Voice Broadcast", icon: Mic },
+  { to: "/planner", label: "Planner", icon: CalendarCheck },
   { to: "/profile", label: "Profile", icon: User },
 ] as const;
 
