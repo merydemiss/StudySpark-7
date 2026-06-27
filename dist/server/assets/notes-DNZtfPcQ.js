@@ -1,5 +1,5 @@
-import { n as useServerFn } from "./createSsrRpc-CFvjpL_S.js";
-import { i as listNotes, n as deleteNote, t as createAndAnalyzeNote } from "./notes.functions-DXYutRUf.js";
+import { n as useServerFn } from "./createSsrRpc-DfY1OTDB.js";
+import { i as listNotes, n as deleteNote, t as createAndAnalyzeNote } from "./notes.functions-Dh-vkZkJ.js";
 import { useState } from "react";
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";

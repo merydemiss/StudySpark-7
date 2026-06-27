@@ -1,5 +1,5 @@
 import { _ as requestHandler, a as getStartContext, c as safeObjectMerge, d as TSS_FORMDATA_CONTEXT, f as TSS_SERVER_FUNCTION, g as getResponse, i as flattenMiddlewares, l as FrameType, m as X_TSS_SERIALIZED, n as getDefaultSerovalPlugins, o as runWithStartContext, p as X_TSS_RAW_RESPONSE, s as createNullProtoObject, t as mergeHeaders, u as TSS_CONTENT_TYPE_FRAMED_VERSIONED } from "./esm-B5zcwdrx.js";
-import { t as getServerFnById } from "./__23tanstack-start-server-fn-resolver-YTq6Cv7l.js";
+import { t as getServerFnById } from "./__23tanstack-start-server-fn-resolver-Dyh3tLZV.js";
 import "react";
 import { RouterProvider } from "@tanstack/react-router";
 import { jsx } from "react/jsx-runtime";
@@ -614,7 +614,7 @@ var baseManifestPromise;
 var cachedFinalManifestPromise;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-BTZaFOXI.js"),
+		import("./router-o53g8HIm.js"),
 		import("./start-DuwrBdHx.js"),
 		import("./__23tanstack-start-plugin-adapters-BzCA6dXo.js")
 	]);

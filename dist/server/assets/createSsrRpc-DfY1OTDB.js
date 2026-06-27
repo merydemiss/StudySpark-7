@@ -1,5 +1,5 @@
 import { f as TSS_SERVER_FUNCTION } from "./esm-B5zcwdrx.js";
-import { t as getServerFnById } from "./__23tanstack-start-server-fn-resolver-YTq6Cv7l.js";
+import { t as getServerFnById } from "./__23tanstack-start-server-fn-resolver-Dyh3tLZV.js";
 import * as React from "react";
 import { isRedirect, useRouter } from "@tanstack/react-router";
 //#region node_modules/@tanstack/react-start/dist/esm/useServerFn.js

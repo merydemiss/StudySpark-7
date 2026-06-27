@@ -1,8 +1,8 @@
-import { n as useServerFn } from "./createSsrRpc-CFvjpL_S.js";
+import { n as useServerFn } from "./createSsrRpc-DfY1OTDB.js";
 import { t as supabase } from "./client-WeurdN5J.js";
-import { t as Route } from "./profile-CxMcTf8q.js";
-import { i as listThreads } from "./threads.functions-Ue6AVtZ3.js";
-import { i as listNotes } from "./notes.functions-DXYutRUf.js";
+import { t as Route } from "./profile-CNoMdK8V.js";
+import { i as listThreads } from "./threads.functions-SzfSOWEH.js";
+import { i as listNotes } from "./notes.functions-Dh-vkZkJ.js";
 import { useNavigate } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useQuery, useQueryClient } from "@tanstack/react-query";

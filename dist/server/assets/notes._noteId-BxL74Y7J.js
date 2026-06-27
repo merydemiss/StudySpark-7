@@ -1,6 +1,6 @@
-import { n as useServerFn } from "./createSsrRpc-CFvjpL_S.js";
-import { t as Route } from "./notes._noteId-XzuUvYDD.js";
-import { r as getNote } from "./notes.functions-DXYutRUf.js";
+import { n as useServerFn } from "./createSsrRpc-DfY1OTDB.js";
+import { t as Route } from "./notes._noteId-B15jQdDF.js";
+import { r as getNote } from "./notes.functions-Dh-vkZkJ.js";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";

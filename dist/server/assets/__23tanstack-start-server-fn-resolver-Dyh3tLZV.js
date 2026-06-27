@@ -20,6 +20,22 @@ var manifest = {
 		functionName: "updateThreadDifficulty_createServerFn_handler",
 		importer: () => import("./threads.functions-CAZ_aZ1G.js")
 	},
+	"8c6016df94df755859f504c92677f7275e4d40af73762d0905338113191d1474": {
+		functionName: "listNotes_createServerFn_handler",
+		importer: () => import("./notes.functions-BWb-1Tbs.js")
+	},
+	"97031b97c3b00aa95e7c2afc09de32de3e01610b2da73c3f7036f9e8c1dd8c6f": {
+		functionName: "getNote_createServerFn_handler",
+		importer: () => import("./notes.functions-BWb-1Tbs.js")
+	},
+	"a5208b3e264091f6aa64b115bd63613e1b53f409fd60c01f55e8eb3a55fd9577": {
+		functionName: "deleteNote_createServerFn_handler",
+		importer: () => import("./notes.functions-BWb-1Tbs.js")
+	},
+	"3cba125e8193fc87f26b66d1cf56990a4671b43f0f4d8524501934d97b7dd750": {
+		functionName: "createAndAnalyzeNote_createServerFn_handler",
+		importer: () => import("./notes.functions-BWb-1Tbs.js")
+	},
 	"83db0b33fc64765da944179583f0109a14af13ddbaa7b20f60032e563a0c6bb7": {
 		functionName: "listAssignments_createServerFn_handler",
 		importer: () => import("./planner.functions-XIe2b3Z5.js")
@@ -55,22 +71,6 @@ var manifest = {
 	"48c9d22c8489bfd4c211a1880d5eb8c6ebc89753110f6b8c99a507b0f92a7239": {
 		functionName: "getStudyStats_createServerFn_handler",
 		importer: () => import("./planner.functions-XIe2b3Z5.js")
-	},
-	"8c6016df94df755859f504c92677f7275e4d40af73762d0905338113191d1474": {
-		functionName: "listNotes_createServerFn_handler",
-		importer: () => import("./notes.functions-BWb-1Tbs.js")
-	},
-	"97031b97c3b00aa95e7c2afc09de32de3e01610b2da73c3f7036f9e8c1dd8c6f": {
-		functionName: "getNote_createServerFn_handler",
-		importer: () => import("./notes.functions-BWb-1Tbs.js")
-	},
-	"a5208b3e264091f6aa64b115bd63613e1b53f409fd60c01f55e8eb3a55fd9577": {
-		functionName: "deleteNote_createServerFn_handler",
-		importer: () => import("./notes.functions-BWb-1Tbs.js")
-	},
-	"3cba125e8193fc87f26b66d1cf56990a4671b43f0f4d8524501934d97b7dd750": {
-		functionName: "createAndAnalyzeNote_createServerFn_handler",
-		importer: () => import("./notes.functions-BWb-1Tbs.js")
 	}
 };
 async function getServerFnById(id, access) {

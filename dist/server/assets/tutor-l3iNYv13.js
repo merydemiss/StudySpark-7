@@ -1,5 +1,5 @@
-import { n as useServerFn } from "./createSsrRpc-CFvjpL_S.js";
-import { i as listThreads, n as deleteThread, t as createThread } from "./threads.functions-Ue6AVtZ3.js";
+import { n as useServerFn } from "./createSsrRpc-DfY1OTDB.js";
+import { i as listThreads, n as deleteThread, t as createThread } from "./threads.functions-SzfSOWEH.js";
 import { Link, Outlet, useNavigate, useParams } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

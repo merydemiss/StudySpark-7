@@ -1,9 +1,9 @@
 import { t as createLovableAiGatewayProvider } from "./ai-gateway.server-BVGsytFR.js";
 import { t as supabase } from "./client-WeurdN5J.js";
-import { t as Route$10 } from "./profile-CxMcTf8q.js";
-import { t as Route$11 } from "./dashboard-CIvHnjll.js";
-import { t as Route$12 } from "./tutor._threadId-CBid0vXf.js";
-import { t as Route$13 } from "./notes._noteId-XzuUvYDD.js";
+import { t as Route$10 } from "./profile-CNoMdK8V.js";
+import { t as Route$11 } from "./dashboard-BEpgtDc2.js";
+import { t as Route$12 } from "./tutor._threadId-_LOqAbQb.js";
+import { t as Route$13 } from "./notes._noteId-B15jQdDF.js";
 import { useEffect } from "react";
 import { HeadContent, Link, Outlet, Scripts, createFileRoute, createRootRouteWithContext, createRouter, lazyRouteComponent, redirect, useRouter } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
@@ -339,21 +339,21 @@ var Route$3 = createFileRoute("/_authenticated/voice")({
 });
 //#endregion
 //#region src/routes/_authenticated/tutor.tsx
-var $$splitComponentImporter$2 = () => import("./tutor-BEPQXSSY.js");
+var $$splitComponentImporter$2 = () => import("./tutor-l3iNYv13.js");
 var Route$2 = createFileRoute("/_authenticated/tutor")({
 	head: () => ({ meta: [{ title: "AI Tutor — StudySpark" }] }),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
 //#endregion
 //#region src/routes/_authenticated/planner.tsx
-var $$splitComponentImporter$1 = () => import("./planner-BG2Zo2xa.js");
+var $$splitComponentImporter$1 = () => import("./planner-BLVT0FSq.js");
 var Route$1 = createFileRoute("/_authenticated/planner")({
 	head: () => ({ meta: [{ title: "Study Planner — StudySpark" }] }),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
 //#endregion
 //#region src/routes/_authenticated/notes.tsx
-var $$splitComponentImporter = () => import("./notes-DNjJwYEn.js");
+var $$splitComponentImporter = () => import("./notes-DNZtfPcQ.js");
 var Route = createFileRoute("/_authenticated/notes")({
 	head: () => ({ meta: [{ title: "Smart Notes — StudySpark" }] }),
 	component: lazyRouteComponent($$splitComponentImporter, "component")
