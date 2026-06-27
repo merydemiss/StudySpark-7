@@ -1,0 +1,1 @@
+import{a as e}from"./chunk-Cyuzqnbw.js";import{r as t}from"./jsx-runtime-BwA_5UX2.js";function n(){throw Error(`Invariant failed`)}var r=e(t(),1),i=r.createContext(null);function a(e){return r.useContext(i)}export{i as n,n as r,a as t};
